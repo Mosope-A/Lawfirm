@@ -8,22 +8,43 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: white;
-      color: black;
+      background-image: url(Assets/images/legal.jpg);
+      background-size:cover;
+      background-repeat:no-repeat; 
+      background-position:center;
+      /*height: 500vh;*/
+      background-attachment: fixed;
+      margin: 10px;
+      padding: 20px;
+
+    }
+
+    .main-content {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: 10px;
     }
 
     .header_container{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 10%;
+      padding: 10px;
     }
 
     header {
-      background-color: midnightblue;
+      background-color: black;
       color: white;
       padding: 20px;
       align-items: center;
+      border-bottom: 2px solid white;
+      border-radius: 20px;
+    }
+
+    .branding {
+      display: flex;
+      align-items: center;/*aligns icons and text vertically*/
+      gap: 30px;/*space between logo and text*/
     }
 
     .logo-title {
@@ -72,7 +93,7 @@
     }
 
     .about-container h2 {
-      color: midnightblue;
+      color: black;
       margin-top: 0;
     }
     
@@ -134,10 +155,13 @@
     }
 
     .hero {
-      background-color: whitesmoke;
+      background-color:;
       padding: 40px 20px;
       text-align: center;
       border-radius: 20px;
+      border-bottom: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
@@ -158,7 +182,7 @@
     }
 
     form input[type="submit"] {
-      background-color: midnightblue;
+      background-color: black;
       color: white;
       border: none;
       cursor: pointer;
@@ -167,7 +191,7 @@
     }
 
     footer {
-      background-color: midnightblue;
+      background-color: black;
       color: white;
       text-align: center;
       padding: 15px;
@@ -221,15 +245,19 @@
             <img src="Assets/images/menu bar.png" alt="menu" class="menu-icon">
         </div>
         <div class="nav-container">
+          <div class="branding">
             <div class="logo-title">
                 <img src="logo.png" alt="logo" class="logo-icon">
             </div>
             <h1>Babasoji Alaba & Co</h1>
+          </div>
             <nav>
                 <a href="#">Home</a>
-                <a href="#about">About</a>
                 <a href="#services">Services</a>
+                <a href="#section profile">Team</a>
+                <a href="#firm-details">firm-details</a>
                 <a href="#contact">Contact</a>
+                <a href="#about">About</a>
               </nav>
         </div>
         <div class="icon-btn">
@@ -237,7 +265,6 @@
         </div>
     </div>
     </header>
-
   <main>
     <section id="hero" class="section">
       <div class="hero">
@@ -258,10 +285,12 @@
     </section>
 
     <!-- Lawyer Profile -->
-    <section class="section profile">
-      <h2>Meet Our Lead Counsel</h2>
-      <img src="lawyer.jpg" alt="Barrister Babasoji Alaba" />
-      <p><strong><i><b>Barr. Babasoji Alaba</b></i></strong> is a seasoned lawyer with over 15 years of experience in the legal field. Known for her integrity, advocacy, and passion for justice, he has represented numerous clients with exceptional outcomes.</p>
+     <section id="section profile" class="section">
+      <section class="section profile">
+        <h2>Meet Our Lead Counsel</h2>
+        <img src="lawyer.jpg" alt="Barrister Babasoji Alaba" />
+        <p><strong><i><b>Barr. Babasoji Alaba</b></i></strong> is a seasoned lawyer with over 40 years of experience in the legal field. Known for his integrity, advocacy, and passion for justice, he has represented numerous clients with exceptional outcomes.</p>
+      </section>
     </section>
 
     <!-- Testimonials -->
@@ -289,17 +318,17 @@
           </div>
   
           <div class="detail">
-            <img src="Assets/images/address icon.png" alt="Address" class="icon">
+            <img src="Assets/images/address image icon.jpg" alt="Address" class="icon">
             <p>xxx, xxxxxxxxxxxxx, xxxxxxxxxxxx,xxxxx.</p>
           </div>
   
           <div class="detail">
-            <img src="icons/fax.png" alt="Fax" class="icon">
+            <img src="Assets/images/fax-machine-icon.jpg" alt="Fax" class="icon">
             <p>+234 (1) 2703 849</p>
           </div>
   
           <div class="detail">
-            <img src="icons/language.png" alt="Language" class="icon">
+            <img src="Assets/images/language image.png" alt="Language" class="icon">
             <p>English</p>
           </div>
         </div>
