@@ -1,9 +1,853 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My Site</title>
-  </head>
-  <body>
-    <h1>Welcome to my site!</h1>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Babasoji Alaba & co</title>
+        <meta name="description" content="Babasoji Alaba & Co is a leading law firm dedicated to providing exceptional legal services with integrity and excellence. Our team of experienced attorneys specializes in corporate law, litigation, intellectual property, and more. We are committed to achieving justice for our clients and building lasting relationships based on trust and professionalism." />
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            .top-header {
+                background-color: goldenrod;
+                color: black;
+                width: 100%;
+                height: 40px;
+                display: flex;
+                overflow: hidden;
+                align-items: center;
+            }
+
+            .marquee-container {
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                background: goldenrod;
+                color: black;
+            }
+
+            .marquee-content {
+                display: inline-flex;
+                gap: 270px;
+                white-space: nowrap;
+                min-width: 200%;
+                animation: scroll-left 15s linear infinite;
+            }
+
+                /* Pause marquee on hover */
+            .marquee-container:hover .marquee-content {
+                animation-play-state: paused;
+            }
+
+
+            .marquee-content span {
+                font-weight: small;
+            }
+
+            .marquee-content a {
+                color: black;
+                text-decoration: none;
+            }
+
+                @keyframes scroll-left {
+                0%   { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+                }
+
+
+            .top-header a {
+                color: black;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            
+            .second-header {
+                background-color: black;
+                color: white;
+                height: 90px;
+                top: 0;
+                position: sticky;
+                z-index: 10;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+                border-bottom: 1px solid gold;
+            }
+
+            .second-header .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 1rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .second-header h2 {
+                margin: 0;
+            }
+
+            .logo-title {
+                display: flex;
+                align-items: center;
+                gap: 10px; /* space between logo and text */
+            }
+
+            .logo {
+                height: 50px; /* adjust size as needed */
+                width: auto;
+            }
+
+
+
+            nav {
+                display: flex;
+                gap: 2rem;
+            }
+
+            nav a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+                
+            nav a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                width: 0%;
+                height: 2px;
+                background: gold;
+                transition: 0.3s;
+            }
+
+            nav a :hover {
+                color: gold;
+            }
+                
+            nav a:hover::after {
+                width: 100%;
+            }
+
+            .underline-hover {
+                color: black;
+                text-decoration: none;
+                font-weight: bold;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+            .underline-hover::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                width: 0%;
+                height: 2px;
+                background: gold;
+                transition: 0.3s;
+            }
+
+
+            .underline-hover:hover::after {
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                cursor: pointer;
+                z-index: 200;
+            }
+
+            .menu-toggle span {
+                width: 25px;
+                height: 3px;
+                background: goldenrod;
+                margin: 2px 0;
+            }
+
+            /* body.nav-open .background,*/
+            body.nav-open .hero,
+            body.nav-open footer {
+                filter: blur(4px);
+                transition: filter 0.3s ease;
+                pointer-events: none;
+            } 
+
+            .close-btn {
+                display: none;
+            }
+
+            .hero {
+                background-image: url(Assets/images/legal.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;   
+                background-position: center center;
+                height: 90vh;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 0 20px;
+            }
+
+            .hero h2 {
+                font-size: 48px;
+                text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+            }
+
+            .hero h1,
+            .hero p {
+                animation: fadeInUp 1s ease forwards;
+                opacity: 0;
+            }
+            @keyframes fadeInUp {
+                from {transform: translateY(20px);opacity: 0;}
+                to {transform: translateY(0);opacity: 1;}
+            }
+
+            .section {
+                padding: 60px 40px;
+                margin-bottom: 50px;
+            }
+
+
+            .section h3 {
+                font-size: 32px;
+                margin-bottom: 20px;
+                border-left: 5px solid gold;
+                padding-left: 10px;
+
+            }
+            
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+            
+            .card {
+                display: block;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                transition: 0.3s;
+                color: black;
+                text-decoration: none;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            
+            .card:hover {
+                box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+                transform: translateY(-5px);
+            }
+                /* FAQ Styles */
+            .faq-section {
+                max-width: 800px;
+                margin: 4rem auto;
+                padding: 1rem;
+                font-family: Arial, sans-serif;
+            }
+
+            .faq-title {
+                display: inline-block;
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                border-bottom: 2px solid gold;
+                color: Black;
+            }
+
+            .faq {
+                background: #fff;
+                margin-bottom: 1rem;
+                border-radius: 6px; 
+                border: 1px solid #ddd;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 1rem;
+                font-size: 0.95rem;
+                color: goldenrod;
+                line-height: 1.5;
+                transition: all 0.3s ease;
+            }
+
+            .faq.active .faq-answer {
+                max-height: 300px;
+                padding: 1rem;
+            }
+
+            .faq-icon {
+                transition: transform 0.3s ease;
+            }
+
+            .faq.active .faq-icon {
+                transform: rotate(180deg);
+            }
+
+            .faq-link {
+                margin-top: 20px;
+                font-size: 1rem;
+                text-align: center;
+            }
+
+
+            /* Consultation Form */
+            .consultation-section {
+                max-width: 800px;
+                margin: 4rem auto;
+                padding: 2rem;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            .consultation-title {
+                text-align: left;
+                font-size: 2rem;
+                border-left: 5px solid gold;
+                padding-left: 10px;
+                margin-bottom: 2rem;
+                color: black;
+                display: inline-block;
+                padding-bottom: 0.5rem;
+            }
+
+            .consultation-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form-group label {
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+                color: black;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.8rem;
+                border: 1px solid #444;
+                border-radius: 5px;
+                font-size: 1rem;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: goldenrod;
+                box-shadow: 0 0 5px rgba(218,165,32,0.6);
+            }
+
+            .consult-btn {
+                background: black;
+                color: white;
+                padding: 1rem;
+                font-size: 1.1rem;
+                font-weight: bold;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s ease;
+                width: 50%;
+                align-self: center;
+            }
+
+            .consult-btn:hover {
+                background: black;
+                color: goldenrod;
+                border: 2px solid goldenrod;
+            }
+
+                /* Responsive consultation*/
+                @media (max-width: 600px) {
+                .consultation-section {
+                    padding: 1.5rem;
+                }
+                }
+
+
+            /* Footer Styles */
+            footer {
+                background: #111;
+                color: white;
+                text-align: center;
+                padding: 30px;
+                border-top: 2px solid gold;
+            }
+
+            .footer-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                max-width: 1200px;
+                margin: 0 auto;
+                gap: 2rem;
+                margin-bottom: 60px;
+            }
+
+            .footer-column {
+                flex: 1 1 22%;
+                min-width: 200px;
+            }
+
+            .footer-column h4 {
+                font-size: 1rem;
+                font-weight: bold;
+                color: white;
+                margin-bottom: 1rem;
+            }
+
+            .footer-column ul {
+                list-style: disc;
+                padding: 0;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-column ul li a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            .footer-column ul li a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -4px;
+                width: 0%;
+                height: 2px;
+                background: gold;
+                transition: 0.3s;
+            }
+                
+            .footer-column ul li a:hover::after {
+                width: 100%;
+            }
+
+            .section-f h4 {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                border-left: 3px solid gold;
+                padding-right: 30px;
+                
+            }
+
+            @media (max-width: 754px) {
+
+                .top-header{
+                    flex-direction: row;
+                    text-align: center;
+                }
+
+                .top-header *{
+                    font-size: 12px;
+                    margin: 5px 0;
+                }
+
+                .nav {
+                    position: fixed;
+                    right: -100%;
+                    height: 50vh;
+                    top: 18px;
+                    background-color: black;
+                    color: white;
+                    width: 250px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 2rem 2rem;
+                    gap: 1rem;
+                    z-index: 999;
+                    border-radius: 20px;
+                    border: 2px solid goldenrod;
+                    transition: right 0.4s ease;
+                }
+
+                .nav.show {
+                    right: 0;
+                }
+
+
+                .menu-toggle {
+                    display: flex;
+                }
+
+                .close-btn{
+                    display: block;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1.5rem;
+                    color: gold;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    z-index: 20;
+                }
+
+                .hero h2 {
+                    font-size: 28px;
+                }
+
+                .hero p {
+                    font-size: 14px;
+                }
+                
+            }
+                
+        </style>
+    </head>
+    <body>
+        <header class="top-header">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span><h4>&#128241;<a href="tel:+234 909 048 6220" style="color: black; text-decoration: none;">+234 909 048 6220</a></h4></span>
+                    <span><h4>&#9993;<a href="mailto: mosopealaba@gmail.com" style="color: black; text-decoration: none;">mosopealaba@gmail.com</a></h4></span>
+                    <span><h4>&#x1F4CD;<a href="https://www.google.com/maps?q=9+Oyewunmi+close,+Falolu,+Surulere,+Lagos+."
+                            style="color: black; text-decoration: none;"
+                            target="_blank">
+                            9, Oyewunmi close, Falolu, Surulere, Lagos.
+                        </a></h4></span>
+                </div>
+            </div>           
+        </header>
+
+        <header class="second-header">
+            <div class="container">
+                <div class="logo-title">
+                    <img src="Assets/images/BA Logo.jpeg" alt="Logo" class="logo">
+                    <h2>Babasoji Alaba & Co</h2>
+                </div>
+                <nav class="nav" id="nav" aria-label="Main navigation">
+                    <button class="close-btn" id="closeBtn">&times;</button>
+                    <!-- Links will be dynamically inserted here -->
+                </nav>
+            </div>
+
+            <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+            </div>
+        </header>
+
+        <script>
+            // 1. Object: Store navigation links neatly in an object
+            const navConfig = {
+                nav: document.getElementById("nav"),
+                menuToggle: document.getElementById("menuToggle"),
+                closeBtn: document.getElementById("closeBtn"),
+
+                // 2. Array: List of navigation link objects
+                links: [
+                { text: "Home", href: "#home" },
+                { text: "Attorneys", href: "#attorneys" },
+                { text: "Practice Areas", href: "#practice" },
+                { text: "Clients", href: "#clients" },
+                { text: "Contact", href: "#contact" },
+                ],
+
+                // 3. Loop: Dynamically render links inside the nav
+                renderLinks() {
+                // Clear nav but keep close button
+                this.nav.replaceChildren(this.closeBtn);
+
+                // Loop through each link in the array
+                this.links.forEach(link => {
+                    const a = document.createElement("a");
+                    a.href = link.href;
+                    a.textContent = link.text;
+                    this.nav.appendChild(a);
+                });
+                },
+
+                // 4. Toggle menu open/close
+                addEventListeners() {
+                this.menuToggle.addEventListener("click", () => {
+                    this.nav.classList.add("show");
+                    document.body.classList.add("nav-open");
+                });
+
+                this.closeBtn.addEventListener("click", () => {
+                    this.nav.classList.remove("show");
+                    document.body.classList.remove("nav-open");
+                });
+
+                // Close nav when any link is clicked
+                this.nav.addEventListener("click", (e) => {
+                    if (e.target.tagName === "A") {
+                    this.nav.classList.remove("show");
+                    document.body.classList.remove("nav-open");
+                    }
+                });
+                },
+
+                // 5. Init function to run everything
+                init() {
+                this.renderLinks();
+                this.addEventListeners();
+                }
+            };
+
+            // 6. Initialize when page loads
+            document.addEventListener("DOMContentLoaded", () => {
+                navConfig.init();
+            });
+        </script>
+
+    <section id="Home" class="hero" role="img" aria-label="Law books and justice theme">
+        
+    <div class="hero-content">
+        <h2>Justice. Integrity. Excellence.</h2>
+        <p>Your trusted legal partner in achieving justice and clarity.</p>
+        </div>
+    
+    </section> 
+    <section id="attorneys"   class="section">
+            <h3>Meet Our Attorneys</h3>
+        <div class="grid">
+
+            <a href="attorneys/babasoji.html"  class="card">
+                <strong>Babasoji Alaba</strong><br>
+                Name Partner
+            </a>
+
+            <a href="attorneys/morisola.html" class="card">
+                <strong>Morisola Akinlabi</strong><br>
+                Managing Partner
+            </a>
+
+            <div class="card">
+                <strong>Harvey specter</strong><br>
+                Senior Partner
+            </div>
+
+            <div class="card">
+                <strong>Louis Litt</strong><br>
+                Junior Partner
+            </div>
+
+            <div class="card">
+                <strong>Donna Paulsen</strong><br>
+                COO
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="Practice" class="section">
+    <h3>Practice Areas</h3>
+    <div class="grid">
+        <div class="card">Corporate Law</div>
+        <div class="card">Mergers & Acquisitions</div>
+        <div class="card">Litigation</div>
+        <div class="card">Intellectual Property</div>
+    </div>
+    </section>
+
+        <!-- FAQ Section -->
+<section id="faq" class="faq-section">
+    <!--<div style="text-align: center;">-->
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <!--</div>-->
+
+    <div class="faq">
+    <div class="faq-question">
+        <span>What services does your law firm provide?</span>
+        <span class="faq-icon">▼</span>
+    </div>
+    <div class="faq-answer">
+        We specialize in corporate law, litigation, intellectual property, and more.
+    </div>
+    </div>
+
+    <div class="faq">
+    <div class="faq-question">
+        <span>How can I book a consultation?</span>
+        <span class="faq-icon">▼</span>
+    </div>
+    <div class="faq-answer">
+        You can reach out through our contact form, email, or phone number provided above.
+    </div>
+    </div>
+
+    <div class="faq">
+    <div class="faq-question">
+        <span>Do you handle international clients?</span>
+        <span class="faq-icon">▼</span>
+    </div>
+    <div class="faq-answer">
+        Yes, we work with both local and international clients across various countries and industries.
+    </div>
+    </div>
+
+    <p class="faq-link">
+    <a href="FAQ LAW.html" class="underline-hover"><b>See all FAQs &gt;</b></a>
+    </p>
+</section>
+
+
+        <script>
+    class FAQAccordion {
+    constructor(selector) {
+        this.faqs = document.querySelectorAll(selector);
+        this.init();
+    }
+
+    init = () => {
+        this.faqs.forEach(faq => {
+        faq.querySelector(".faq-question").addEventListener("click", () => this.toggleFAQ(faq));
+        });
+    };
+
+    toggleFAQ = (faq) => {
+      // Close all other FAQs first
+        this.faqs.forEach(item => {
+        if (item !== faq) item.classList.remove("active");
+        });
+      // Toggle current one
+        faq.classList.toggle("active");
+    };
+    }
+
+  // Initialize
+    new FAQAccordion(".faq");
+</script>
+
+<!--consultation form part-->
+
+        <section id="consultation" class="section consultation-section">
+        <h2 class="consultation-title">Book a Consultation</h2>
+        <form class="consultation-form">
+            <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{10,15}" required>
+            </div>
+
+            <script>
+                // Force phone input to accept only digits
+                document.getElementById("phone").addEventListener("input", function(e) {
+                    this.value = this.value.replace(/\D/g, ""); // Remove anything that’s not a digit
+                });
+            </script>
+
+
+
+            <div class="form-group">
+            <label for="service">Service Required</label>
+            <select id="service" required>
+                <option value=""> Select a Service </option>
+                <option>Corporate Law</option>
+                <option>Mergers & Acquisitions</option>
+                <option>Litigation</option>
+                <option>Intellectual Property</option>
+                <option>Other</option>
+            </select>
+            </div>
+
+            <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="consult-btn">Submit Request</button>
+        </form>
+        </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+
+        <section class="section-f">
+                <div class="footer-column">
+                <h4>COMPANY</h4>
+                <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Attorneys</a></li>
+                <li><a href="#">Our Contacts</a></li>
+                <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </section>
+    
+
+    <section class="section-f">
+            <div class="footer-column">
+                <h4>PRACTICE AREAS</h4>
+                <ul> 
+                <li><a href="#">Corporate Law</a></li>
+                <li><a href="#">Merge and Acquisitions</a></li>
+                <li><a href="#">Litigation</a></li>
+                <li><a href="#">Intellectual Property</a></li>
+                </ul>
+            </div>
+    </section>
+
+    <section class="section-f">
+            <div class="footer-column">
+                <h4>INFORMATION</h4>
+                <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+    </section>
+
+    </div>
+        &copy; 2025 Babasoji Alaba & Co LLP. All rights reserved.
+</footer>
+    </body>
 </html>
