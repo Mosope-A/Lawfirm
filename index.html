@@ -15,6 +15,7 @@
                 scroll-behavior: smooth;
             }
 
+        /*-----------------Top header---------------*/
             .top-header {
                 background-color: goldenrod;
                 color: black;
@@ -29,8 +30,6 @@
                 width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
-                background: goldenrod;
-                color: black;
             }
 
             .marquee-content {
@@ -46,14 +45,10 @@
                 animation-play-state: paused;
             }
 
-
-            .marquee-content span {
-                font-weight: small;
-            }
-
             .marquee-content a {
                 color: black;
                 text-decoration: none;
+                font-weight: bold;
             }
 
                 @keyframes scroll-left {
@@ -61,13 +56,14 @@
                 100% { transform: translateX(-50%); }
                 }
 
-
-            .top-header a {
-                color: black;
-                text-decoration: none;
-                font-weight: bold;
+                @media (max-width: 750px) {
+                .marquee-content {
+                    gap: 100px;
+                    animation: scroll-left 25s linear infinite;
+                }
             }
-            
+
+        /*-----------------Second header---------------*/
             .second-header {
                 background-color: black;
                 color: white;
@@ -88,10 +84,6 @@
                 align-items: center;
             }
 
-            .second-header h2 {
-                margin: 0;
-            }
-
             .logo-title {
                 display: flex;
                 align-items: center;
@@ -102,8 +94,6 @@
                 height: 50px; /* adjust size as needed */
                 width: auto;
             }
-
-
 
             nav {
                 display: flex;
@@ -123,13 +113,13 @@
                 position: absolute;
                 left: 0;
                 bottom: -4px;
-                width: 0%;
+                width: 0;
                 height: 2px;
                 background: gold;
                 transition: 0.3s;
             }
 
-            nav a :hover {
+            nav a:hover {
                 color: gold;
             }
                 
@@ -137,52 +127,46 @@
                 width: 100%;
             }
 
-            .underline-hover {
-                color: black;
-                text-decoration: none;
-                font-weight: bold;
-                position: relative;
-                transition: color 0.3s ease;
-            }
-
-            .underline-hover::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -4px;
-                width: 0%;
-                height: 2px;
-                background: gold;
-                transition: 0.3s;
-            }
-
-
-            .underline-hover:hover::after {
-                width: 100%;
-            }
-
+            /*---------Mobile menu---------*/
+           /* menu toggle - keep absolute so it sits at the right edge of the header */
             .menu-toggle {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                cursor: pointer;
-                z-index: 200;
+            display: none;               /* shown in the media query */
+            position: absolute;          /* keep absolute so it doesn't affect flow */
+            right: 2rem;                 /* aligns with your .container padding (1rem 2rem) */
+            top: 50%;                    /* vertical center of header */
+            transform: translateY(-50%); /* perfect vertical centering */
+            z-index: 200;
+            flex-direction: column;
+            gap: 6px;                    /* spacing between the bars */
+            cursor: pointer;
             }
 
+            /* hamburger bars */
             .menu-toggle span {
-                width: 25px;
-                height: 3px;
-                background: goldenrod;
-                margin: 2px 0;
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: goldenrod;
+            border-radius: 2px;
             }
 
-            /* body.nav-open .background,*/
+            /* show the toggle on small screens and keep it vertically centered */
+            @media (max-width: 754px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* keep header elements aligned — container already uses align-items:center */
+            .second-header .container {
+                /* no change required here, but ensure container still centers items */
+                align-items: center;
+            }
+            }
+
+
             body.nav-open .hero,
             body.nav-open footer {
                 filter: blur(4px);
-                transition: filter 0.3s ease;
                 pointer-events: none;
             } 
 
@@ -190,6 +174,7 @@
                 display: none;
             }
 
+            /*--------------Hero section---------------*/
             .hero {
                 background-image: url(Assets/images/legal.jpg);
                 background-size: cover;
@@ -219,6 +204,7 @@
                 to {transform: translateY(0);opacity: 1;}
             }
 
+            /*--------------Section---------------*/
             .section {
                 padding: 60px 40px;
                 margin-bottom: 50px;
@@ -230,9 +216,15 @@
                 margin-bottom: 20px;
                 border-left: 5px solid gold;
                 padding-left: 10px;
-
             }
-            
+
+            .section-f h4 {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                border-left: 3px solid gold;
+                padding-right: 30px;
+            }
+
             .grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -255,7 +247,8 @@
                 box-shadow: 0 10px 20px rgba(0,0,0,0.15);
                 transform: translateY(-5px);
             }
-                /* FAQ Styles */
+
+        /*---------FAQ Styles------------*/
             .faq-section {
                 max-width: 800px;
                 margin: 4rem auto;
@@ -296,7 +289,6 @@
                 padding: 0 1rem;
                 font-size: 0.95rem;
                 color: goldenrod;
-                line-height: 1.5;
                 transition: all 0.3s ease;
             }
 
@@ -313,14 +305,36 @@
                 transform: rotate(180deg);
             }
 
-            .faq-link {
+        .faq-link {
                 margin-top: 20px;
                 font-size: 1rem;
                 text-align: center;
             }
 
+        .faq-link a {
+            color: black; /* match your FAQ section text color */
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+        }
 
-            /* Consultation Form */
+        .faq-link a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: gold;
+            transition: 0.3s;
+        }
+
+        .faq-link a:hover::after {
+            width: 100%;
+        }
+
+
+        /*------------ Consultation Form----------------*/
             .consultation-section {
                 max-width: 800px;
                 margin: 4rem auto;
@@ -331,14 +345,11 @@
             }
 
             .consultation-title {
-                text-align: left;
                 font-size: 2rem;
                 border-left: 5px solid gold;
                 padding-left: 10px;
                 margin-bottom: 2rem;
                 color: black;
-                display: inline-block;
-                padding-bottom: 0.5rem;
             }
 
             .consultation-form {
@@ -399,10 +410,12 @@
                 .consultation-section {
                     padding: 1.5rem;
                 }
+                .consult-btn {
+                    width: 100%;
                 }
+            }
 
-
-            /* Footer Styles */
+        /*-----------Footer Styles-----------*/
             footer {
                 background: #111;
                 color: white;
@@ -429,12 +442,13 @@
             .footer-column h4 {
                 font-size: 1rem;
                 font-weight: bold;
-                color: white;
                 margin-bottom: 1rem;
+                border-left: 3px solid gold;
+                padding-left: 5px;
             }
 
             .footer-column ul {
-                list-style: disc;
+                list-style: none;
                 padding: 0;
             }
 
@@ -447,7 +461,6 @@
                 color: white;
                 text-decoration: none;
                 font-weight: bold;
-                transition: color 0.3s ease;
                 position: relative;
             }
 
@@ -466,26 +479,21 @@
                 width: 100%;
             }
 
-            .section-f h4 {
-                font-size: 1rem;
-                margin-bottom: 20px;
-                border-left: 3px solid gold;
-                padding-right: 30px;
-                
-            }
+            @media (max-width: 754px) {
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        gap: 2rem 4rem; /* reduce gap */
+        text-align: center; /* optional: centers text in mobile */
+    }
+
+    .footer-column {
+        min-width: unset; /* remove min width restriction */
+    }
+}
+
 
             @media (max-width: 754px) {
-
-                .top-header{
-                    flex-direction: row;
-                    text-align: center;
-                }
-
-                .top-header *{
-                    font-size: 12px;
-                    margin: 5px 0;
-                }
-
                 .nav {
                     position: fixed;
                     right: -100%;
@@ -503,16 +511,12 @@
                     border: 2px solid goldenrod;
                     transition: right 0.4s ease;
                 }
-
                 .nav.show {
                     right: 0;
                 }
-
-
                 .menu-toggle {
                     display: flex;
                 }
-
                 .close-btn{
                     display: block;
                     position: absolute;
@@ -524,13 +528,18 @@
                     cursor: pointer;
                     z-index: 20;
                 }
-
+                .hero {
+                    height: 60vh;
+                }
                 .hero h2 {
                     font-size: 28px;
                 }
-
                 .hero p {
                     font-size: 14px;
+                }
+                .footer-container {
+                    flex-direction: column;
+                    align-items: center;
                 }
                 
             }
@@ -541,13 +550,13 @@
         <header class="top-header">
             <div class="marquee-container">
                 <div class="marquee-content">
-                    <span><h4>&#128241;<a href="tel:+234 909 048 6220" style="color: black; text-decoration: none;">+234 909 048 6220</a></h4></span>
-                    <span><h4>&#9993;<a href="mailto: mosopealaba@gmail.com" style="color: black; text-decoration: none;">mosopealaba@gmail.com</a></h4></span>
-                    <span><h4>&#x1F4CD;<a href="https://www.google.com/maps?q=9+Oyewunmi+close,+Falolu,+Surulere,+Lagos+."
+                    <h4>&#128241;<a href="tel:+234 909 048 6220" style="color: black; text-decoration: none;">+234 909 048 6220</a></h4>
+                    <h4>&#9993;<a href="mailto: mosopealaba@gmail.com" style="color: black; text-decoration: none;">mosopealaba@gmail.com</a></h4>
+                    <h4>&#x1F4CD;<a href="https://www.google.com/maps?q=9+Oyewunmi+close,+Falolu,+Surulere,+Lagos+."
                             style="color: black; text-decoration: none;"
                             target="_blank">
                             9, Oyewunmi close, Falolu, Surulere, Lagos.
-                        </a></h4></span>
+                        </a></h4>
                 </div>
             </div>           
         </header>
@@ -555,7 +564,7 @@
         <header class="second-header">
             <div class="container">
                 <div class="logo-title">
-                    <img src="Assets/images/BA Logo.jpeg" alt="Logo" class="logo">
+                    <img src="Assets/images/BA Logo.jpeg" alt="company logo" class="logo">
                     <h2>Babasoji Alaba & Co</h2>
                 </div>
                 <nav class="nav" id="nav" aria-label="Main navigation">
@@ -584,7 +593,7 @@
                 { text: "Attorneys", href: "#attorneys" },
                 { text: "Practice Areas", href: "#practice" },
                 { text: "Clients", href: "#clients" },
-                { text: "Contact", href: "#contact" },
+                { text: "Contact", href: "#consultation" },
                 ],
 
                 // 3. Loop: Dynamically render links inside the nav
@@ -635,7 +644,7 @@
             });
         </script>
 
-    <section id="Home" class="hero" role="img" aria-label="Law books and justice theme">
+    <section id="home" class="hero" role="img" aria-label="Law books and justice theme">
         
     <div class="hero-content">
         <h2>Justice. Integrity. Excellence.</h2>
@@ -676,7 +685,7 @@
     </section>
 
 
-    <section id="Practice" class="section">
+    <section id="practice" class="section">
     <h3>Practice Areas</h3>
     <div class="grid">
         <div class="card">Corporate Law</div>
@@ -686,40 +695,29 @@
     </div>
     </section>
 
+    <!-- Clients Section (Placeholder for now) -->
+    <section id="clients" class="section">
+      <h3>Our Clients</h3>
+      <p style="text-align:center; font-size:1.2rem; color:gray;">🚧 Coming Soon... 🚧</p>
+    </section>
+
         <!-- FAQ Section -->
 <section id="faq" class="faq-section">
-    <!--<div style="text-align: center;">-->
     <h2 class="faq-title">Frequently Asked Questions</h2>
-    <!--</div>-->
 
     <div class="faq">
-    <div class="faq-question">
-        <span>What services does your law firm provide?</span>
-        <span class="faq-icon">▼</span>
-    </div>
-    <div class="faq-answer">
-        We specialize in corporate law, litigation, intellectual property, and more.
-    </div>
+        <div class="faq-question">What services does your law firm provide? <span class="faq-icon">&#9660;</span></div>
+        <div class="faq-answer">We specialize in corporate law, litigation, intellectual property, and more.</div>
     </div>
 
     <div class="faq">
-    <div class="faq-question">
-        <span>How can I book a consultation?</span>
-        <span class="faq-icon">▼</span>
-    </div>
-    <div class="faq-answer">
-        You can reach out through our contact form, email, or phone number provided above.
-    </div>
+        <div class="faq-question">How can I book a consultation? <span class="faq-icon">&#9660;</span></div>
+        <div class="faq-answer">You can reach out through our contact form, email, or phone number provided on our website.</div>
     </div>
 
     <div class="faq">
-    <div class="faq-question">
-        <span>Do you handle international clients?</span>
-        <span class="faq-icon">▼</span>
-    </div>
-    <div class="faq-answer">
-        Yes, we work with both local and international clients across various countries and industries.
-    </div>
+        <div class="faq-question">Do you handle international clients? <span class="faq-icon">&#9660;</span></div>
+        <div class="faq-answer">Yes, we work with both local and international clients across various industries.</div>
     </div>
 
     <p class="faq-link">
@@ -727,127 +725,98 @@
     </p>
 </section>
 
+<script>
+  // Accordion: Only one open at a time
+  document.querySelectorAll(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const faq = question.parentElement;
 
-        <script>
-    class FAQAccordion {
-    constructor(selector) {
-        this.faqs = document.querySelectorAll(selector);
-        this.init();
-    }
+      // Close all others
+      document.querySelectorAll(".faq").forEach((item) => {
+        if (item !== faq) {
+          item.classList.remove("active");
+        }
+      });
 
-    init = () => {
-        this.faqs.forEach(faq => {
-        faq.querySelector(".faq-question").addEventListener("click", () => this.toggleFAQ(faq));
-        });
-    };
-
-    toggleFAQ = (faq) => {
-      // Close all other FAQs first
-        this.faqs.forEach(item => {
-        if (item !== faq) item.classList.remove("active");
-        });
-      // Toggle current one
-        faq.classList.toggle("active");
-    };
-    }
-
-  // Initialize
-    new FAQAccordion(".faq");
+      // Toggle current
+      faq.classList.toggle("active");
+    });
+  });
 </script>
 
-<!--consultation form part-->
-
-        <section id="consultation" class="section consultation-section">
-        <h2 class="consultation-title">Book a Consultation</h2>
-        <form class="consultation-form">
-            <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{10,15}" required>
-            </div>
-
-            <script>
-                // Force phone input to accept only digits
-                document.getElementById("phone").addEventListener("input", function(e) {
-                    this.value = this.value.replace(/\D/g, ""); // Remove anything that’s not a digit
-                });
-            </script>
-
-
-
-            <div class="form-group">
-            <label for="service">Service Required</label>
-            <select id="service" required>
-                <option value=""> Select a Service </option>
-                <option>Corporate Law</option>
-                <option>Mergers & Acquisitions</option>
-                <option>Litigation</option>
-                <option>Intellectual Property</option>
-                <option>Other</option>
-            </select>
-            </div>
-
-            <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
-            </div>
-
-            <button type="submit" class="consult-btn">Submit Request</button>
-        </form>
-        </section>
-
-
-    <footer class="footer">
-        <div class="footer-container">
-
-        <section class="section-f">
-                <div class="footer-column">
-                <h4>COMPANY</h4>
-                <ul>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Attorneys</a></li>
-                <li><a href="#">Our Contacts</a></li>
-                <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-        </section>
-    
-
-    <section class="section-f">
-            <div class="footer-column">
-                <h4>PRACTICE AREAS</h4>
-                <ul> 
-                <li><a href="#">Corporate Law</a></li>
-                <li><a href="#">Merge and Acquisitions</a></li>
-                <li><a href="#">Litigation</a></li>
-                <li><a href="#">Intellectual Property</a></li>
-                </ul>
-            </div>
-    </section>
-
-    <section class="section-f">
-            <div class="footer-column">
-                <h4>INFORMATION</h4>
-                <ul>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-    </section>
-
+        <!-- Consultation Section -->
+<section id="consultation" class="consultation-section">
+  <h2 class="consultation-title">Book a Consultation</h2>
+  <form class="consultation-form">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
     </div>
-        &copy; 2025 Babasoji Alaba & Co LLP. All rights reserved.
-</footer>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" maxlength="11" placeholder="e.g. 08012345678" required>
+    </div>
+
+    <div class="form-group">
+      <label for="service">Service Interested In</label>
+      <select id="service" name="service" required>
+        <option value="">--Select a service--</option>
+        <option value="corporate-law">Corporate Law</option>
+        <option value="litigation">Litigation</option>
+        <option value="intellectual-property">Intellectual Property</option>
+        <option value="mergers-acquisitions">Mergers & Acquisitions</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Additional Information</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="consult-btn">Submit</button>
+  </form>
+</section>
+
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>About Us</h4>
+                    <p>Babasoji Alaba & Co is a leading law firm dedicated to providing exceptional legal services with integrity and excellence.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#attorneys">Attorneys</a></li>
+                        <li><a href="#practice">Practice Areas</a></li>
+                        <li><a href="#clients">Clients</a></li>
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p>&#128241; +234 909 048 6220</p>
+                    <p>&#9993; mosopealaba@gmail.com</p>
+                    <p>&#x1F4CD; 9, Oyewunmi Close, Falolu, Surulere, Lagos.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; 2024 Babasoji Alaba & Co. All Rights Reserved.</p>
+        </footer>
     </body>
 </html>
