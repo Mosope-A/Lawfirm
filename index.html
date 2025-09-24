@@ -128,7 +128,6 @@
             }
 
             /*---------Mobile menu---------*/
-           /* menu toggle - keep absolute so it sits at the right edge of the header */
             .menu-toggle {
             display: none;               /* shown in the media query */
             flex-direction: column;
@@ -472,20 +471,6 @@
             }
 
             @media (max-width: 754px) {
-    .footer-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columns */
-        gap: 2rem 4rem; /* reduce gap */
-        text-align: center; /* optional: centers text in mobile */
-    }
-
-    .footer-column {
-        min-width: unset; /* remove min width restriction */
-    }
-}
-
-
-            @media (max-width: 754px) {
                 .nav {
                     position: fixed;
                     right: -100%;
@@ -526,11 +511,28 @@
                 .hero p {
                     font-size: 14px;
                 }
+
                 .footer-container {
-                    flex-direction: column;
-                    align-items: center;
+                    grid-template-columns: repeat(2, 1fr); /* 2x2 layout */
+                    gap: 2rem 3rem; /* add breathing space */
+                }
+
+                @media (max-width: 480px) {
+                .footer-container {
+                    grid-template-columns: 1fr; /* single column for very small screens */
+                    text-align: center;
+                }
+
+                .footer-column h4 {
+                    border-left: none;
+                    border-bottom: 2px solid goldenrod;
+                    padding-left: 0;
+                    padding-bottom: 0.3rem;
+                    display: inline-block;
+                    margin-bottom: 1rem;
                 }
                 
+            }
             }
                 
         </style>
@@ -554,8 +556,9 @@
         <header class="second-header">
             <div class="container">
                 <div class="logo-title">
-                    <img src="Assets/images/BA Logo.jpeg" alt="company logo" class="logo">
-                    <h2>Babasoji Alaba & Co</h2>
+                    <a href="#home">
+                        <img src="Assets/images/BA Logo.jpeg" alt="company logo" class="logo"></a>
+                        <h2>Babasoji Alaba & Co</h2>
                 </div>
                 <nav class="nav" id="nav" aria-label="Main navigation">
                     <button class="close-btn" id="closeBtn">&times;</button>
@@ -584,6 +587,7 @@
                 { text: "Practice Areas", href: "#practice" },
                 { text: "Clients", href: "#clients" },
                 { text: "Contact", href: "#consultation" },
+                { text: "FAQs", href:"#faq"},
                 ],
 
                 // 3. Loop: Dynamically render links inside the nav
@@ -795,9 +799,15 @@
                 </div>
                 <div class="footer-column">
                     <h4>Contact</h4>
-                    <p>Phone: +234 909 048 6220</p>
-                    <p>Email: mosopealaba@gmail.com</p>
-                    <p>Address: 9, Oyewunmi Close, Falolu, Surulere, Lagos.</p>
+                    <ul>
+                        <li><p>Phone:<a href="tel:+234 909 048 6220" style="color: white; text-decoration: none;">+234 909 048 6220</a></p></li>
+                        <li><p>Email:<a href="mailto: mosopealaba@gmail.com" style="color: white; text-decoration: none;">mosopealaba@gmail.com</a></p></li>
+                        <li><p>Address:<a href="https://www.google.com/maps?q=9+Oyewunmi+close,+Falolu,+Surulere,+Lagos+."
+                                style="color: white; text-decoration: none;"
+                                target="_blank">
+                                9, Oyewunmi close, Falolu, Surulere, Lagos.
+                            </a></p></li>
+                    </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Follow Us</h4>
@@ -808,7 +818,7 @@
                     </ul>
                 </div>
             </div>
-            <p>&copy; 2024 Babasoji Alaba & Co. All Rights Reserved.</p>
+            <p>&copy; 2025 Babasoji Alaba & Co. All Rights Reserved.</p>
         </footer>
     </body>
 </html>
